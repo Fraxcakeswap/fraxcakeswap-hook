@@ -15,7 +15,6 @@ import {PoolIdLibrary} from "@pancakeswap/v4-core/src/types/PoolId.sol";
 import {ICLSwapRouterBase} from "pancake-v4-periphery/src/pool-cl/interfaces/ICLSwapRouterBase.sol";
 import {IHooks} from "@pancakeswap/v4-core/src/pool-cl/interfaces/ICLHooks.sol";
 import {SwapFee} from "../src/SwapFee.sol";
-import "forge-std/console.sol";
  
 contract FraxcakeSwapHookTest is Test, CLTestUtils {
     using PoolIdLibrary for PoolKey;
@@ -73,8 +72,7 @@ contract FraxcakeSwapHookTest is Test, CLTestUtils {
  
     function testNonFraxPointsHolder() public {
         uint256 amtOut = _swap();
- 
-        console.log("non frax amout out %s", amtOut);
+
         // amt out be at least 0.15% lesser due to swap fee
         assertLe(amtOut, 0.997 ether);
     }
@@ -107,7 +105,7 @@ contract FraxcakeSwapHookTest is Test, CLTestUtils {
     }
  
     function _swap() internal returns (uint256 amtOut) {
-        MockERC20(Currency.unwrap(currency0)).mint(address(alice), 10 ether);
+        MockERC20(Currency.unwrap(currency0)).mint(address(alice), 1 ether);
  
         // set alice as tx.origin and mint alice token
         vm.prank(address(alice), address(alice));
@@ -117,7 +115,7 @@ contract FraxcakeSwapHookTest is Test, CLTestUtils {
                 poolKey: key,
                 zeroForOne: true,
                 recipient: address(alice),
-                amountIn: 10 ether,
+                amountIn: 1 ether,
                 amountOutMinimum: 0,
                 sqrtPriceLimitX96: 0,
                 hookData: new bytes(0)
