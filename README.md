@@ -11,6 +11,11 @@ Hook based on FraxPoints to discount for swaps.
 1. Install dependencies with `forge install`
 2. Run test with `forge test`
 
+## Deployments
+
+Frax Testnet (Holesky):
+- SwapFee: [0xa88B7b20fE4b88A0C7C56521366414441ef4cF05](https://holesky.fraxscan.com/address/0xa88B7b20fE4b88A0C7C56521366414441ef4cF05)
+
 ## Description
 
 ### SwapFee Contract
